@@ -28,9 +28,12 @@ keystone.set('locals', {
 	editable: keystone.content.editable,
 });
 keystone.set('routes', require('./routes'));
+keystone.set('cloudinary config', process.env.CLOUDINARY_URL );
 
 keystone.set('nav', {
-	posts: ['posts', 'post-categories'],
+	benefactor: ['Benefactor', 'BenefactorType'],
+	country: ['State', 'LocalGovernment'],
+	// posts: ['posts', 'post-categories'],
 	galleries: 'galleries',
 	enquiries: 'enquiries',
 	users: 'users',
