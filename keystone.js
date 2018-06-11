@@ -21,6 +21,7 @@ keystone.init({
 	'user model': 'User',
 });
 keystone.import('models');
+keystone.import('subModels');
 keystone.set('locals', {
 	_: require('lodash'),
 	env: keystone.get('env'),

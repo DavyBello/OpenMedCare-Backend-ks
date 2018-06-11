@@ -7,13 +7,15 @@ const { STATES, GENDERS, CANDIDATE_CATEGORIES, PHONE_REGEX, toCamelCase  } = req
  * Benefactor Model
  * ==========
  */
-const Benefactor = new keystone.List('Benefactor');
+const Benefactor = new keystone.List('Benefactor', {
+	inherits: keystone.list('User')
+});
 
-Benefactor.add({
-	name: { type: Types.Name, required: true, index: true },
+Benefactor.add('Benefactor', {
+	// name: { type: Types.Name, required: true, index: true },
 	medCareId: { type: Types.Text, initial: false},
-	email: { type: Types.Email, initial: false, sparse: true, unique: true, index: true },
-	phone: { type: Types.Text, initial: true, sparse: true, unique: true, index: true },
+	// email: { type: Types.Email, initial: false, sparse: true, unique: true, index: true },
+	phone: { type: Types.Text, initial: true, sparse: true, unique: true, index: true, required: true },
 	// password: { type: Types.Password, initial: true, required: true },
 }, 'Details', {
 	sex: {type: Types.Select, options: GENDERS, initial: true},
@@ -28,17 +30,13 @@ Benefactor.add({
 	stateOfOrigin: { type: Types.Text, initial: false},
 }, 'Type', {
 	type: { type: Types.Relationship, ref: 'BenefactorType', many: false, initial: true }
+}, 'Status', {
+	isVerified: { type: Boolean, default: false }
 });
 
 // Model Hooks
 Benefactor.schema.pre('save', function (next) {
-  this.name.first = toCamelCase(this.name.first);
-  this.name.last = toCamelCase(this.name.last);
-  if (PHONE_REGEX.test(this.phone)){
-    next();
-  } else {
-		next(new Error('Invalid Phone Number'));
-	}
+	next();
 });
 
 /**
