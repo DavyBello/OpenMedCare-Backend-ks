@@ -17,7 +17,7 @@
     "graphql-compose-mongoose": "^4.1.1",
     "graphql-compose-pagination": "^3.0.1",
     "graphql-subscriptions": "^0.5.8",
-    "keystone": "4.0.0-beta.5",
+    "keystone": "^4.0.0-beta.8",
     "lodash": "^4.13.1",
     "pug": "2.0.0-beta11",
     "subscriptions-transport-ws": "^0.9.9"
