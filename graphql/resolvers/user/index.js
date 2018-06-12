@@ -7,6 +7,14 @@ const User = keystone.list('User').model;
 
 module.exports = () => {
   UserTC.addResolver({
+    kind: 'query',
+    name: 'isAuthenticated',
+    description: 'returns true if candidate is authenticated',
+    type: 'Boolean',
+    resolve: () => true
+  })
+
+  UserTC.addResolver({
     kind: 'mutation',
     name: 'loginWithEmail',
     description: 'login a user',

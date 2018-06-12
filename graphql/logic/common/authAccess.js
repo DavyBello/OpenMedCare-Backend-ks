@@ -8,7 +8,10 @@ const authAccess = exports.authAccess = (sourceType, resolvers) => {
 					throw new Error(`Provide a source Type for this Auth wrapper`)
 				}
 				if (!sourceUser){
-					// console.log('Unauthorized request');
+					// Unauthorized request
+					if (resolvers[k].parent.name == `isAuthenticated`) {
+						return false
+					}
 					throw new Error(`You must be signed in as a ${userType.toLowerCase()} to have access to this action.`)
 				}
 				if (isActivated){
