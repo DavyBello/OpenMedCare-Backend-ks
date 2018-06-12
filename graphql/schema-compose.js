@@ -35,10 +35,10 @@ GQC.rootQuery().addFields({
 	user: UserTC.get('$findOne'),
 	...authAccess({userType: 'Benefactor'}, {
 		benefactorIsAuthenticated: UserTC.getResolver('isAuthenticated'),
-    viewerBenefactor: ViewerBenefactorTC.get('$benefactorAccess'),
+    viewerBenefactor: ViewerBenefactorTC.getResolver('benefactorAccess'),
 	}),
 	...authAccess({userType: 'Benefactor', isActivated: true}, {
-    isActivatedViewerBenefactor: ViewerBenefactorTC.get('$benefactorAccess'),
+    isActivatedViewerBenefactor: ViewerBenefactorTC.getResolver('benefactorAccess'),
 	}),
 });
 
