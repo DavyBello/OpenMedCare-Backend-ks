@@ -58,3 +58,4 @@ UserTC.addFields({jwt: 'String'})
 * Viewer Fields for authentication and authorization
 */
 const ViewerBenefactorTC = exports.ViewerBenefactorTC = GQC.getOrCreateTC('ViewerBenefactor');
+const PlaceHolderTC = exports.PlaceHolderTC = GQC.getOrCreateTC('PlaceHolder');
