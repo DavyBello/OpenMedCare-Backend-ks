@@ -1,12 +1,14 @@
+const keystone = require('keystone');
+
 //Create and add id of relationship document (Cloudinary file) to the sourceUser/Self
-const createManagedRelationship = exports.createManagedRelationship =  ( field, TC, managedModelType ) => {
-	// console.log(TC.get('$createOne'));
-	return TC.get('$createOne').addArgs({
+module.exports =  ( field, TC, managedModelType ) => {
+	// console.log(TC.getResolver('createOne'));
+	return TC.getResolver('createOne').addArgs({
 		managedId: 'String!',
 		// managedModelType: 'String!'
 	}).wrapResolve(next => async (rp) => {
 		//get sourceUser from resolveParams (rp)
-		const { sourceUser, sourceType } = rp
+		const { sourceUser, sourceUserType } = rp
 		// const { args: { managedId, managedModelType} } = rp
 		const { args: { managedId } } = rp
 		try {
