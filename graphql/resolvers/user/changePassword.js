@@ -16,7 +16,7 @@ module.exports = {
       try {
         // validate password
         return new Promise((resolve, reject)=>{
-          sourceUser._.password.compare(oldPassword, (err, isMatch) => {
+          sourceUser._.password.compare(oldPassword, async (err, isMatch) => {
             if (err) {
               reject(err);
             }
