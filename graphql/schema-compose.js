@@ -38,6 +38,16 @@ GQC.rootQuery().addFields({
 		benefactorIsAuthenticated: UserTC.getResolver('isAuthenticated'),
     viewerBenefactor: ViewerBenefactorTC.getResolver('benefactorAccess'),
 	}),
+	...authAccess({sourceUserType: 'HPStaff'}, {
+		HPStaffIsAuthenticated: UserTC.getResolver('isAuthenticated'),
+    viewerHPStaff: PlaceHolderTC.getResolver('underDevelopment'),
+    // viewerHPStaff: ViewerHPStaffTC.getResolver('HPStaffAccess'),
+	}),
+	...authAccess({sourceUserType: 'CHU'}, {
+		CHUIsAuthenticated: UserTC.getResolver('isAuthenticated'),
+    viewerCHU: PlaceHolderTC.getResolver('underDevelopment'),
+    // viewerCHU: ViewerCHUTC.getResolver('CHUAccess'),
+	}),
 	...authAccess({sourceUserType: 'Benefactor', isActivated: true}, {
     isActivatedViewerBenefactor: ViewerBenefactorTC.getResolver('benefactorAccess'),
 	}),
@@ -57,15 +67,15 @@ GQC.rootMutation().addFields({
 		createBenefactorAppointment: PlaceHolderTC.getResolver('underDevelopment')
 	}),
 	...authAccess({sourceUserType: 'HPStaff'}, {
-		createTreatmentRecordHPS: PlaceHolderTC.getResolver('underDevelopment')
-		createPrescriptionHPS: PlaceHolderTC.getResolver('underDevelopment')
-		createBenefactorAppointment: PlaceHolderTC.getResolver('underDevelopment')
-	})
+		createTreatmentRecordHPS: PlaceHolderTC.getResolver('underDevelopment'),
+		createPrescriptionHPS: PlaceHolderTC.getResolver('underDevelopment'),
+		createBenefactorAppointment: PlaceHolderTC.getResolver('underDevelopment'),
+	}),
 	...authAccess({sourceUserType: 'CHU'}, {
-		createTreatmentRecordCHU: PlaceHolderTC.getResolver('underDevelopment')
-		createPrescriptionCHU: PlaceHolderTC.getResolver('underDevelopment')
-		// createBenefactorAppointment: PlaceHolderTC.getResolver('underDevelopment')
-	})
+		createTreatmentRecordCHU: PlaceHolderTC.getResolver('underDevelopment'),
+		createPrescriptionCHU: PlaceHolderTC.getResolver('underDevelopment'),
+		// createBenefactorAppointment: PlaceHolderTC.getResolver('underDevelopment'),
+	}),
 });
 
 const schema = GQC.buildSchema();
