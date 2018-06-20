@@ -33,6 +33,7 @@ keystone.set('cloudinary config', process.env.CLOUDINARY_URL );
 
 keystone.set('nav', {
 	benefactor: ['Benefactor', 'BenefactorType'],
+	partnerships: ['CHU', 'HPStaff', 'HealthcareProvider'],
 	country: ['State', 'LocalGovernment'],
 	// posts: ['posts', 'post-categories'],
 	galleries: 'galleries',
