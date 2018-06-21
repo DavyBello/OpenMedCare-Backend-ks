@@ -1,8 +1,8 @@
 //Remove and delete id of relationship document to the sourceUser/Self
-module.exports = ( field, TC ) => {
-	return TC.getResolver('removeById').wrapResolve(next => async (rp) => {
+module.exports = ({ field, TC }) => {
+	return TC.get('$removeById').wrapResolve(next => async (rp) => {
 		//get sourceUser from resolveParams (rp)
-		const { args, sourceUser, sourceUserType } = rp
+		const { args, sourceUser, sourceType } = rp
 		if (sourceUser) {
 			const _field = sourceUser[field]
 			if (Array.isArray(_field)) {
@@ -19,10 +19,10 @@ module.exports = ( field, TC ) => {
 					} catch (e) {
 						//Placeholder function to stop the field from saving to the db
 						result.record.remove().exec();
-						throw new Error(`Unexpected error adding the document to ${sourceUserType.toLowerCase()}`);
+						throw new Error(`Unexpected error adding the document to ${sourceType.toLowerCase()}`);
 					}
 				} else {
-					throw new Error(`This ${sourceUserType.toLowerCase()} cannot delete this document`);
+					throw new Error(`This ${sourceType.toLowerCase()} cannot delete this document`);
 				}
 			} else {
 				throw new Error(`Field: ${field} is not a collection`);
