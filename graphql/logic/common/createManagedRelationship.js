@@ -8,7 +8,7 @@ module.exports =  ({ field, TC, managedModelType }) => {
 		// managedModelType: 'String!'
 	}).wrapResolve(next => async (rp) => {
 		//get sourceUser from resolveParams (rp)
-		const { sourceUser, sourceType } = rp
+		const { sourceUser, sourceUserType } = rp
 		// const { args: { managedId, managedModelType} } = rp
 		const { args: { managedId } } = rp
 		try {

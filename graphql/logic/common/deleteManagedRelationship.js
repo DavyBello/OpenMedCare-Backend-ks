@@ -8,7 +8,7 @@ module.exports = ({ field, TC, managedModelType }) => {
 		// managedModelType: 'String!'
 	}).wrapResolve(next => async (rp) => {
 		//get sourceUser from resolveParams (rp)
-		const { sourceUser, sourceType } = rp
+		const { sourceUser, sourceUserType } = rp
 		// const { args: { managedId, managedModelType, _id} } = rp
 		const { args: { managedId, _id} } = rp
 		try {
@@ -30,10 +30,10 @@ module.exports = ({ field, TC, managedModelType }) => {
 						} catch (e) {
 							//Placeholder function to stop the field from saving to the db
 							result.record.remove().exec();
-							return Error(`Unexpected error adding the document to ${sourceType.toLowerCase()}`);
+							return Error(`Unexpected error adding the document to ${sourceUserType.toLowerCase()}`);
 						}
 					} else {
-						return Error(`This ${sourceType.toLowerCase()} cannot delete this document`);
+						return Error(`This ${sourceUserType.toLowerCase()} cannot delete this document`);
 					}
 				} else {
 					return Error(`Field: ${field} is not a collection in ${managedModelType}`);
