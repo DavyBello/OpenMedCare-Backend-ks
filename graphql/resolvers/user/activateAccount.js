@@ -36,10 +36,10 @@ module.exports = {
             return user;
           }
         } else {
-          throw Error('expired token')
+          return Promise.reject('expired token')
         }
       } else {
-        throw Error('invalid token')
+        return Promise.reject('invalid token')
       }
     } catch (e) {
       throw e;
