@@ -39,12 +39,12 @@ GQC.rootQuery().addFields({
     viewerBenefactor: ViewerBenefactorTC.getResolver('benefactorAccess'),
 	}),
 	...authAccess({sourceUserType: 'HPStaff'}, {
-		HPStaffIsAuthenticated: UserTC.getResolver('isAuthenticated'),
+		hpsIsAuthenticated: UserTC.getResolver('isAuthenticated'),
     viewerHPStaff: PlaceHolderTC.getResolver('underDevelopment'),
     // viewerHPStaff: ViewerHPStaffTC.getResolver('HPStaffAccess'),
 	}),
 	...authAccess({sourceUserType: 'CHU'}, {
-		CHUIsAuthenticated: UserTC.getResolver('isAuthenticated'),
+		chuIsAuthenticated: UserTC.getResolver('isAuthenticated'),
     viewerCHU: PlaceHolderTC.getResolver('underDevelopment'),
     // viewerCHU: ViewerCHUTC.getResolver('CHUAccess'),
 	}),
@@ -56,24 +56,24 @@ GQC.rootQuery().addFields({
 // Mutations
 GQC.rootMutation().addFields({
 	loginUser: UserTC.getResolver('loginWithEmail'),
-	createBenefactorAccount: PlaceHolderTC.getResolver('underDevelopment'),
+	benefactorCreateAccount: PlaceHolderTC.getResolver('underDevelopment'),
 	...authAccess({sourceUserType: 'Benefactor'}, {
-		sendBenefactorActivationLink: UserTC.getResolver('sendUserActivationLink'),
+		benefactorSendActivationLink: UserTC.getResolver('sendUserActivationLink'),
 		// Update Profile Details etc.
-		updateBenefactorDetails: UserTC.getResolver('updateById'),
-		changeBenefactorAccountPassword: UserTC.getResolver('changePassword'),
-		deactivateBenefactorAccount: PlaceHolderTC.getResolver('underDevelopment'),
-		deleteBenefactorAccount: PlaceHolderTC.getResolver('underDevelopment'),
-		createBenefactorAppointment: PlaceHolderTC.getResolver('underDevelopment')
+		benefactorUpdateSelf: updateSelf({TC: BenefactorTC}),
+		benefactorChangeAccountPassword: UserTC.getResolver('changePassword'),
+		benefactorDeactivateAccount: PlaceHolderTC.getResolver('underDevelopment'),
+		benefactorDeleteAccount: PlaceHolderTC.getResolver('underDevelopment'),
+		benefactorCreateAppointment: PlaceHolderTC.getResolver('underDevelopment')
 	}),
 	...authAccess({sourceUserType: 'HPStaff'}, {
-		createTreatmentRecordHPS: PlaceHolderTC.getResolver('underDevelopment'),
-		createPrescriptionHPS: PlaceHolderTC.getResolver('underDevelopment'),
-		createBenefactorAppointment: PlaceHolderTC.getResolver('underDevelopment'),
+		hpsCreateTreatmentRecord: PlaceHolderTC.getResolver('underDevelopment'),
+		hpsCreatePrescription: PlaceHolderTC.getResolver('underDevelopment'),
+		hpsCreateBenefactorAppointment: PlaceHolderTC.getResolver('underDevelopment'),
 	}),
 	...authAccess({sourceUserType: 'CHU'}, {
-		createTreatmentRecordCHU: PlaceHolderTC.getResolver('underDevelopment'),
-		createPrescriptionCHU: PlaceHolderTC.getResolver('underDevelopment'),
+		chuCreateTreatmentRecord: PlaceHolderTC.getResolver('underDevelopment'),
+		chuCreatePrescription: PlaceHolderTC.getResolver('underDevelopment'),
 		// createBenefactorAppointment: PlaceHolderTC.getResolver('underDevelopment'),
 	}),
 });
