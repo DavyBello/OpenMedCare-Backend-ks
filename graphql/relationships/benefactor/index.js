@@ -1,12 +1,12 @@
-const { BenefactorTC, BenefactorTypeTC } = require('../../composers');
+const { BenefactorTC, MalariaRecordTypeTC } = require('../../composers');
 
 module.exports = () => {
-  BenefactorTC.addRelation('experience', {
-      resolver: () => BenefactorTypeTC.getResolver('findByIds'),
-      prepareArgs: { // resolver `findByIds` has `_ids` arg, let provide value to it
-        _ids: (source) => source.type,
+  BenefactorTC.addRelation('malariaRecords', {
+      resolver: () => MalariaRecordTypeTC.getResolver('findMany'),
+      prepareArgs: {
+        filter: (source) => ({medCareId: source.medCareId}),
       },
-      projection: { type: true }, // point fields in source object, which should be fetched from DB
+      projection: { medCareId: 1 }, // point fields in source object, which should be fetched from DB
     }
   );
   // BenefactorTC.addRelation('documentsPagination', {

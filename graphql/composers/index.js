@@ -10,6 +10,8 @@ const User = keystone.list('User').model;
 const Benefactor = keystone.list('Benefactor').model;
 const BenefactorType = keystone.list('BenefactorType').model;
 
+const MalariaRecord = keystone.list('MalariaRecord').model;
+
 /**
 * Config
 */
@@ -45,6 +47,7 @@ const BenefactorTCOptions = {
 const UserTC = exports.UserTC = composeWithMongoose(User, UserTCOptions);
 const BenefactorTC = exports.BenefactorTC = composeWithMongoose(Benefactor, BenefactorTCOptions);
 const BenefactorTypeTC = exports.BenefactorTypeTC = composeWithMongoose(BenefactorType);
+const MalariaRecordTypeTC = exports.MalariaRecordTypeTC = composeWithMongoose(MalariaRecordType);
 
 // console.log(UserTC);
 
