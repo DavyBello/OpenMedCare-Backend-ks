@@ -13,21 +13,21 @@ const Benefactor = new keystone.List('Benefactor', {
 
 Benefactor.add('Benefactor', {
 	// name: { type: Types.Name, required: true, index: true },
-	medCareId: { type: Types.Text, initial: false},
+	medCareId: { type: Types.Text, initial: false, index: true, noedit: true, unique: true},
 	// email: { type: Types.Email, initial: false, sparse: true, unique: true, index: true },
 	phone: { type: Types.Text, initial: true, sparse: true, unique: true, index: true, required: true },
 	// password: { type: Types.Password, initial: true, required: true },
 }, 'Details', {
-	sex: {type: Types.Select, options: GENDERS, initial: true},
+	sex: {type: Types.Select, options: GENDERS, initial: true, index: true},
 	address: { type: Types.Text, initial: true },
-	// stateOfResidence: {type: Types.Select, options: STATES, initial: true},
+	stateOfResidence: {type: Types.Select, options: STATES, initial: true},
 	// state: { type: Types.Relationship, ref: 'State', many: false, initial: true },
 	// lga: {type: Types.Select, options: STATES, display: "Local Government", initial: true},
 	localGovernment: { type: Types.Relationship, ref: 'LocalGovernment', many: false, initial: true },
 	dateOfBirth: { type: Types.Date, initial: true },
 	// placeOfBirth: { type: Types.Text, initial: true},
 	// nationality: { type: Types.Text, initial: true},
-	stateOfOrigin: { type: Types.Text, initial: false},
+	stateOfOrigin: {type: Types.Select, options: STATES, initial: true, index: true}
 }, 'Type', {
 	type: { type: Types.Relationship, ref: 'BenefactorType', many: false, initial: true }
 }, 'Status', {
@@ -36,6 +36,9 @@ Benefactor.add('Benefactor', {
 
 // Model Hooks
 Benefactor.schema.pre('save', function (next) {
+	if (this.isNew) {
+		this.medCareId = `${this.stateOfResidence}/l/a/1`;
+	}
 	next();
 });
 
