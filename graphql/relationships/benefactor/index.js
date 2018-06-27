@@ -1,8 +1,8 @@
-const { BenefactorTC, MalariaRecordTypeTC } = require('../../composers');
+const { BenefactorTC, MalariaRecordTC } = require('../../composers');
 
 module.exports = () => {
   BenefactorTC.addRelation('malariaRecords', {
-      resolver: () => MalariaRecordTypeTC.getResolver('findMany'),
+      resolver: () => MalariaRecordTC.getResolver('findMany'),
       prepareArgs: {
         filter: (source) => ({medCareId: source.medCareId}),
       },

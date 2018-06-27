@@ -47,7 +47,7 @@ const BenefactorTCOptions = {
 const UserTC = exports.UserTC = composeWithMongoose(User, UserTCOptions);
 const BenefactorTC = exports.BenefactorTC = composeWithMongoose(Benefactor, BenefactorTCOptions);
 const BenefactorTypeTC = exports.BenefactorTypeTC = composeWithMongoose(BenefactorType);
-const MalariaRecordTypeTC = exports.MalariaRecordTypeTC = composeWithMongoose(MalariaRecordType);
+const MalariaRecordTC = exports.MalariaRecordTC = composeWithMongoose(MalariaRecord);
 
 // console.log(UserTC);
 
